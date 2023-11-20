@@ -1,0 +1,26 @@
+
+.container-main .side-navbar{
+   background-color: #ccc;
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+   border-radius: 6px;
+   padding: 1rem;
+ }
+ 
+ .container-main .side-navbar .sidebar-link{
+   text-decoration: none;
+   color: var(--color-black);
+ 
+   font-weight: 600;
+ }
+ 
+ .container-main .side-navbar .sidebar-link:hover{
+   color: #555;
+ }
+ 
+ .container-main .side-navbar .sidebar-link:active{
+   color: #888;
+ }
+ 
+ 
