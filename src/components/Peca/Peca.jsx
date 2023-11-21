@@ -1,16 +1,36 @@
 import React from 'react'
 
+import API from "../../services/API";
+
+
 export default function Peca() {
+
+
+   function handleSubmit(e){
+      e.preventDefault()
+
+      const dados = {
+         nome: e.target.PecaNome.value,
+         tipo: e.target.PecaTipo.value,
+         cor: e.target.PecaCor.value,
+         descricao: e.target.PecaDescricao.value,
+         quantidade: 0,
+         quantidadeMin: e.target.PecaQntdMinima.value,
+      }
+
+      console.log(dados)
+
+      API.post("peca", dados)
+
+      alert("Peça Cadastrada")
+   }
+
+
    return (
       
       <div className='cadastro-container'>
          <h2>Cadastro Peça</h2>
-         <form method='POST' className='form-container'>
-
-            <fieldset>
-               <label for="PecaId" class="form-label">ID da Peça</label>
-               <input type="text" class="form-control" name='PecaId' id="PecaId" aria-describedby="emailHelp" />
-            </fieldset>
+         <form method='POST' className='form-container' onSubmit={handleSubmit}>
 
             <fieldset>
                <label for="PecaNome" class="form-label">Nome da Peça</label>
@@ -30,11 +50,6 @@ export default function Peca() {
             <fieldset>
                <label for="PecaDescricao" class="form-label">Descrição da Peça</label>
                <textarea type="text" class="form-control" name='PecaDescricao' id="PecaDescricao" aria-describedby="emailHelp"></textarea>
-            </fieldset>
-
-            <fieldset>
-               <label for="PecaQntd" class="form-label">Quantidade da Peça</label>
-               <input type="number" class="form-control" name='PecaQntd' id="PecaQntd" aria-describedby="emailHelp" />
             </fieldset>
 
             <fieldset>

@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import API from "../../services/API";
 // import { Table } from "reactstrap";
 // import API from "../../services/API";
 
 export default function TableEstoque() {
+
+   const [peca, setPeca] = useState([])
+
+   useEffect(() => {
+      API.get("peca").then(res => {
+         setPeca(res.dados)
+      })
+   }, []);
+
 
   return (
       <div className="table-principal">
@@ -18,21 +28,17 @@ export default function TableEstoque() {
             </tr>
          </thead>
          <tbody>
-            <tr>
-            <td>John Doe</td>
-            <td>johndoe@example.com</td>
-            <td>San Francisco</td>
-            </tr>
-            <tr>
-            <td>Jane Doe</td>
-            <td>janedoe@example.com</td>
-            <td>New York</td>
-            </tr>
-            <tr>
-               <td>Peter Jones</td>
-               <td>peterjones@example.com</td>
-               <td>Chicago</td>
-            </tr>
+            {peca.map(item => {
+               return(
+                  <tr>
+                     <td>{item.nome}</td>
+                     <td>{item.quantidadeMin}</td>
+                     <td>{item.quantidade}</td>
+                     <td>{item.valor}</td>
+                     <td>{item.valor}</td>
+                  </tr>
+               )
+            })}
          </tbody>
       </table>
       </div>
