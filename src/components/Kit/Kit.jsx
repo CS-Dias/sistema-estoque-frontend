@@ -33,7 +33,9 @@ export default function Kit() {
          nome: pecaObj.nome,
          tipo: pecaObj.tipo,
          cor: pecaObj.cor,
-         descricao: pecaObj.descricao
+         descricao: pecaObj.descricao,
+         quantidadeMin: pecaObj.quantidadeMin
+
       })
 
       API.post("kit", {
