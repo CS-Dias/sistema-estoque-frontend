@@ -41,7 +41,7 @@ export default function Kit() {
       API.post("kit", {
          nome: event.target.nomeKit.value,
          descricao: event.target.descKit.value,
-         valor: parseFloat(event.target.valorKit.value),
+         valor: event.target.valorKit.value,
       }, `peca_id=${pecaObj.id}`)
 
       alert("Kit Cadastrado")
@@ -78,7 +78,7 @@ export default function Kit() {
 
             <fieldset>
                <label for="valorKit" class="form-label">Valor do Kit</label>
-               <input type="number" class="form-control" name='valorKit' id="valorKit" aria-describedby="emailHelp"/>
+               <input type="number" min={0} class="form-control" name='valorKit' id="valorKit" aria-describedby="emailHelp"/>
             </fieldset>
 
             <div className='form-button-container'>

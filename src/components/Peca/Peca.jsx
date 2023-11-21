@@ -54,7 +54,7 @@ export default function Peca() {
 
             <fieldset>
                <label for="PecaQntdMinima" class="form-label">Quantidade Mínima da Peça</label>
-               <input type="number" class="form-control" name='PecaQntdMinima' id="PecaQntdMinima" aria-describedby="emailHelp" />
+               <input type="number" min={0} class="form-control" name='PecaQntdMinima' id="PecaQntdMinima" aria-describedby="emailHelp" />
             </fieldset>
 
             <div className='form-button-container'>
