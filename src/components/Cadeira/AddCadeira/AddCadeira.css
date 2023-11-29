@@ -1,10 +1,12 @@
 .container-tipo-input{
    display: flex;
    flex-direction: row;
+   flex-wrap: wrap;
+   gap: 1rem;
    justify-content: space-around;
    flex: 1;
 }
 
 .container-tipo-input div{
-   width: auto;
+   width: 300px;
 }

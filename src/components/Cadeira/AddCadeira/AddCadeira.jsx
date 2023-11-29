@@ -5,10 +5,12 @@ import getPecaPorTipo from './getPecaPorTipo';
 
 export default function AddCadeira() {
 
-   const [pecaPorTipo] = useState(getPecaPorTipo())
+   const tipoPeca = ["ENCONSTO", "BANCO", "ACENTO", "MECANISMO", "BASE", "RODIZIO"];
+   const [pecaPorTipo, setPecaPorTipo] = useState(getPecaPorTipo())
 
    function handleSubmit(e){
       e.preventDefault()
+
 
       const dados = {
          nome: e.target.CadeiraNome.value,
@@ -21,6 +23,37 @@ export default function AddCadeira() {
       console.log(dados);
 
       API.post("produto", dados)
+
+      let cadeira = {}
+
+      API.get("produto", `nome=${dados.nome}`).then(res => {
+         cadeira = res.dados[0]
+      })
+
+      tipoPeca.map(item => {
+
+         try {
+
+            if (parseInt(e.target["peca-tipo-" + item].value) > 0) {
+               API.get("peca", `id=${e.target["peca-tipo-" + item].value}`).then(res => {
+
+                  console.log(res.dados);
+   
+                  const data = {
+                     produto: cadeira,
+                     peca: res.dados
+                  }
+   
+                  API.post("pecaproduto", data)
+               })
+            }
+
+
+            
+         } catch (error) {
+            
+         }
+      })
 
       alert("Cadeira cadastrada no estoque")
    }
@@ -48,25 +81,33 @@ export default function AddCadeira() {
             <label htmlFor="">Peças da cadeira</label>
             <fieldset className='container-tipo-input'>
 
-               {pecaPorTipo.map((pecaTipo) => {
-                  return(
-                     <div>
-                        <label for="CadeiraDescricao" class="form-label">{pecaTipo[0].tipo}</label>
-                        <select class="form-select" id={`peca-tipo-${pecaTipo[0].tipo}`} name={`peca-tipo-${pecaTipo[0].tipo}`} aria-label="Floating label select example">
-                           <option selected>Selecione</option>
-                           {pecaTipo.map(item => {
-                              return (
-                                 <option value={item.id}>{item.nome}</option>
-                              )
+               {
+                  tipoPeca.map(tipoPeca => {
+                     return(
+                        <select class="form-select" id={`peca-tipo-${tipoPeca}`} name={`peca-tipo-${tipoPeca}`}>
+                           <option selected value={0}>Selecione a peça para {tipoPeca}</option>
+                           {pecaPorTipo.map(item => {
+                              for (let index = 0; index < item.length; index++) {
+                                 if (item[index].tipo === tipoPeca) {
+                                    return(<option value={item[index].id} key={index}>{item[index].nome}</option>)
+                                 }                                 
+                              }
                            })}
                         </select>
-                     </div>
-                  )
-               })}
+                     )
+                  })
+               }
+
+            {/* {pecaPorTipo.map(pecaTipo => {
+               return(
+                  <div>
+                     <label for="CadeiraDescricao" class="form-label">{pecaTipo[0].tipo}</label>
+                     
+                  </div>
+               )
+            })} */}
                
             </fieldset>
-
-
 
             <fieldset>
                <label for="CadeiraModelo" class="form-label">Modelo da Cadeira</label>
@@ -90,4 +131,8 @@ export default function AddCadeira() {
          </form>
       </div>
    )
+}
+
+function SelectMap({}){
+
 }
