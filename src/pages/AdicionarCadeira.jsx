@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react'
 import Navbar from '../components/Navbar'
 import AsideNvbar from '../components/AsideNavbar'
-import Cadeira from '../components/Cadeira/Cadeira'
+import AddCadeira from '../components/Cadeira/AddCadeira/AddCadeira'
+
 
 export default function AdicionarCadeira() {
   return (
@@ -10,8 +11,7 @@ export default function AdicionarCadeira() {
       <div className='container-main'>
 
          <AsideNvbar/>
-
-         <Cadeira/>
+         <AddCadeira/>
       </div>
    </Fragment>
   )
