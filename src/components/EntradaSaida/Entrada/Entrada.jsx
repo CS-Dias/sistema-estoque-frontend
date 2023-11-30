@@ -18,7 +18,7 @@ export default function Entrada() {
          <div className="page-title">
             <h5>Entrada</h5>
             <div className="right-side d-flex align-items-center gap-2">
-               <Button color="dark">Ver Mais</Button>
+               {/* <Button color="dark">Ver Mais</Button> */}
             </div>
          </div>
 

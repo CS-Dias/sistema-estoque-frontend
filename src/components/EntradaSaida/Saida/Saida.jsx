@@ -8,7 +8,7 @@ export default function Saida() {
          <div className="page-title">
             <h5>Saida</h5>
             <div className="right-side d-flex align-items-center gap-2">
-               <Button color="dark">Ver Mais</Button>
+               {/* <Button color="dark">Ver Mais</Button> */}
             </div>
          </div>
 

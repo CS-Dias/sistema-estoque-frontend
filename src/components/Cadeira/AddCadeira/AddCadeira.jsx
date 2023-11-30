@@ -60,7 +60,7 @@ export default function AddCadeira() {
 
    return (
       <div className='cadastro-container'>
-         <h2>Cadastro Cadeiro</h2>
+         <h2>Cadastro Cadeira</h2>
          <form method='POST' className='form-container' onSubmit={handleSubmit}>
 
             {/* <fieldset>

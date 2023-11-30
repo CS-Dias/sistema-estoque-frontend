@@ -11,6 +11,21 @@ export default function TableCadeira() {
        })
     }, []);
 
+    function del(id){
+      if (window.confirm("Atenção, isso irá excluir a cadeira selecioanda, deseja continuar?")) {
+         API.del("produto", id)
+   
+         API.get("pecaproduto").then(res => {
+            res.dados.map(item => {
+               if (item.produto.id === id) {
+                  API.del("pecaproduto", item.id)
+               }
+            })
+         })
+         alert("Produto excluído")
+      }
+    }
+
    return (
     <div className="table-principal">
     <table className="table table-striped">
@@ -33,6 +48,10 @@ export default function TableCadeira() {
                    <td>{item.modelo}</td>
                    <td>{item.cor}</td>
                    <td>{item.valorUnitario}</td>
+
+                   <td>
+                     <button className='btn' onClick={(e) => {del(item.id)}}><span className='material-symbols-rounded'>delete</span></button>
+                   </td>
                 </tr>
              )
           })}
